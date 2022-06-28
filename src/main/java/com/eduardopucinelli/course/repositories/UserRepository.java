@@ -1,10 +1,12 @@
 package com.eduardopucinelli.course.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import com.eduardopucinelli.course.entities.Users;
+import com.eduardopucinelli.course.entities.User;
 
-public interface UserRepository extends JpaRepository<Users, Long> {
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
 	// default implementation by JpaRepository.
 
 }
