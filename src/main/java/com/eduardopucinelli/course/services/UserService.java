@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.eduardopucinelli.course.entities.User;
 import com.eduardopucinelli.course.repositories.UserRepository;
-import com.eduardopucinelli.course.resources.exceptions.ResourceExceptionHandler;
-import com.eduardopucinelli.course.resources.exceptions.StandardError;
 import com.eduardopucinelli.course.services.exceptions.DatabaseException;
 import com.eduardopucinelli.course.services.exceptions.ResourceNotFoundException;
 
@@ -38,9 +36,9 @@ public class UserService {
 
 	public void delete(Long id) {
 		try {
-		userRepository.deleteById(id);
+			userRepository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
-			throw new ResourceNotFoundException("Not deleted, "+id+ " no exists.");
+			throw new ResourceNotFoundException("Not deleted, " + id + " no exists.");
 		} catch (DataIntegrityViolationException e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -48,9 +46,9 @@ public class UserService {
 
 	public User update(Long id, User obj) {
 		try {
-		User entity = userRepository.getOne(id);
-		updateData(entity, obj);
-		return userRepository.save(entity);
+			User entity = userRepository.getOne(id);
+			updateData(entity, obj);
+			return userRepository.save(entity);
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
 		}
